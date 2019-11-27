@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ProdutoService {
 
-  private url = 'http://www.mocky.io/v2/5ddeb5be310000536c3ae4c2';
+  private url = 'http://www.mocky.io/v2/5dded292310000345e3ae561';
   
   constructor(private httpClient : HttpClient) { }
 

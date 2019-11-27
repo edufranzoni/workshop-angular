@@ -3,4 +3,5 @@ export interface ProdutoDto {
     nome: string;
     preco: number;
     imagem: string;
+    ativo: boolean;
 }
