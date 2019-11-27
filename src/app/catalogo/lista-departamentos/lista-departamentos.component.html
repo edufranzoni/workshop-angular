@@ -1,0 +1,25 @@
+<h3>Lista de Departamentos</h3>
+
+<div class="alert alert-info" [hidden]="!carregando">
+    <strong>Carregando...</strong>
+</div>
+
+<table class="table table-bordered table-hover" [hidden]="carregando">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Ativo?</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let departamento of departamentos">
+            <td>{{departamento.id}}</td>
+            <td>{{departamento.nome}}</td>
+            <td><span class="glyphicon" 
+                [ngClass]="{'glyphicon-ok text-success': departamento.ativo, 'glyphicon-remove text-danger' : !departamento.ativo}"                
+                
+                ></span></td>            
+        </tr>      
+    </tbody>
+</table>

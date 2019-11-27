@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
 export class ProdutoService {
 
   private url = 'http://www.mocky.io/v2/5ddeb5be310000536c3ae4c2';
-
-  private produtos: Array<ProdutoDto> = [];
   
   constructor(private httpClient : HttpClient) { }
 
