@@ -5,10 +5,11 @@ import { CatalogoRoutingModule } from './catalogo-routing.module';
 import { CatalogoComponent } from './catalogo.component';
 import { ListaProdutosComponent } from './lista-produtos/lista-produtos.component';
 import { ListaDepartamentosComponent } from './lista-departamentos/lista-departamentos.component';
+import { IconestatusComponent } from './iconestatus/iconestatus.component';
 
 
 @NgModule({
-  declarations: [CatalogoComponent, ListaProdutosComponent, ListaDepartamentosComponent],
+  declarations: [CatalogoComponent, ListaProdutosComponent, ListaDepartamentosComponent, IconestatusComponent],
   imports: [
     CommonModule,
     CatalogoRoutingModule    

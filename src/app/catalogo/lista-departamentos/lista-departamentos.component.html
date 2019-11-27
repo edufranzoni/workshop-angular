@@ -21,9 +21,10 @@
                 [ngClass]="{'glyphicon-ok text-success': departamento.ativo, 'glyphicon-remove text-danger' : !departamento.ativo}"                
                 ></span> -->
                 
-                <span class="glyphicon" 
+                <!-- <span class="glyphicon" 
                 [class.glyphicon-ok]="departamento.ativo"
-                [class.glyphicon-remove]="!departamento.ativo"></span>
+                [class.glyphicon-remove]="!departamento.ativo"></span> -->
+                <app-iconestatus [status]="departamento.ativo"></app-iconestatus>
             </td>            
         </tr>      
     </tbody>
