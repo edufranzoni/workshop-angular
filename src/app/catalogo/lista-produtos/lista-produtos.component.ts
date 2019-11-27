@@ -10,6 +10,7 @@ import { ProdutoService } from '../produto.service';
 export class ListaProdutosComponent implements OnInit {
 
   produtos: Array<ProdutoDto> = [];
+  carregando: boolean = false;
 
   constructor(private produtoService: ProdutoService) { }
 
@@ -20,8 +21,15 @@ export class ListaProdutosComponent implements OnInit {
     // }, 
     // error => { console.error(error); 
     // });
-
-    this.produtos = await this.produtoService.obterProdutos().toPromise();
+    try{
+      this.carregando = true;
+      this.produtos = await this.produtoService.obterProdutos().toPromise();
+    } catch(error){
+      console.log(error);
+    }finally{
+      this.carregando = false;
+    }
+    
   }
 
 }

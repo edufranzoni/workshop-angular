@@ -1,5 +1,10 @@
 <h3>Lista de Produtos</h3>
-<table class="table table-bordered table-hover">
+
+<div class="alert alert-info" [hidden]="!carregando">
+    <strong>Carregando...</strong>
+</div>
+
+<table class="table table-bordered table-hover" [hidden]="carregando">
     <thead>
         <tr>
             <th>Id</th>
