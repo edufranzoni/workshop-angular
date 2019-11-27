@@ -10,7 +10,9 @@ import { ListaProdutosComponent } from './lista-produtos/lista-produtos.componen
   declarations: [CatalogoComponent, ListaProdutosComponent],
   imports: [
     CommonModule,
-    CatalogoRoutingModule
+    CatalogoRoutingModule    
+  ],
+  providers: [    
   ]
 })
 export class CatalogoModule { }

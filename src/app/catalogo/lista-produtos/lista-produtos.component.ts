@@ -13,8 +13,15 @@ export class ListaProdutosComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService) { }
 
-  ngOnInit() {
-    this.produtos = this.produtoService.obterProdutos();
+  async ngOnInit() {
+
+    // this.produtoService.obterProdutos().subscribe(produtos => {
+    //   this.produtos = produtos;
+    // }, 
+    // error => { console.error(error); 
+    // });
+
+    this.produtos = await this.produtoService.obterProdutos().toPromise();
   }
 
 }

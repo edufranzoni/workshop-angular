@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ProdutoDto } from './produto-dto';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdutoService {
 
-  private produtos: Array<ProdutoDto> = [
-    { id: 1, nome: 'Iphone XS Max', preco: 9999.99, imagem: 'assets/produtos/iphone.webp' },
-    { id: 2, nome: 'Galaxy Note 10', preco: 4999.99, imagem: 'assets/produtos/galaxy.webp' }
-  ];
-  
-  constructor() { }
+  private url = 'http://www.mocky.io/v2/5ddeb5be310000536c3ae4c2';
 
-  obterProdutos() : ProdutoDto[] {
-    return this.produtos;
+  private produtos: Array<ProdutoDto> = [];
+  
+  constructor(private httpClient : HttpClient) { }
+
+  obterProdutos() : Observable<ProdutoDto[]> {
+    return this.httpClient.get<ProdutoDto[]>(this.url);
   } 
 }
