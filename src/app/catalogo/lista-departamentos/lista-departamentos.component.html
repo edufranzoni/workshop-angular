@@ -16,10 +16,15 @@
         <tr *ngFor="let departamento of departamentos">
             <td>{{departamento.id}}</td>
             <td>{{departamento.nome}}</td>
-            <td><span class="glyphicon" 
+            <td>
+                <!-- <span class="glyphicon" 
                 [ngClass]="{'glyphicon-ok text-success': departamento.ativo, 'glyphicon-remove text-danger' : !departamento.ativo}"                
+                ></span> -->
                 
-                ></span></td>            
+                <span class="glyphicon" 
+                [class.glyphicon-ok]="departamento.ativo"
+                [class.glyphicon-remove]="!departamento.ativo"></span>
+            </td>            
         </tr>      
     </tbody>
 </table>

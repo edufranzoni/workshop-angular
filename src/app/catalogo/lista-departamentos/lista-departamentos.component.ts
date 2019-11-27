@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartamentoDto } from 'src/app/departamento-dto';
+import { DepartamentoDto } from 'src/app/catalogo/departamento-dto';
 import { DepartamentoService } from '../departamento.service';
 
 @Component({
