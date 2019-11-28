@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DepartamentoService {
 
-  private url = 'http://www.mocky.io/v2/5ddebf85310000cb723ae4fc';
+  private url = 'https://localhost:5001/catalogo/departamentos';
   
   constructor(private httpClient: HttpClient) { }
 

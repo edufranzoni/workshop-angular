@@ -1,9 +1,11 @@
-<h3>Lista de Produtos</h3>
+<h3>Produtos</h3>
 
 <div class="alert alert-info" [hidden]="!carregando">
     <strong>Carregando...</strong>
 </div>
-
+<hr/>
+<button class="btn btn-primary" [routerLink]="['/catalogo/produtos/novo']" >Novo</button>
+<hr/>
 <table class="table table-bordered table-hover" [hidden]="carregando">
     <thead>
         <tr>
