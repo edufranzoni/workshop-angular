@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CadastroProduto } from '../cadastro-produto';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -10,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class CadastroProdutoComponent implements OnInit {
 
   form: FormGroup;
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.form = this.createForm();
   }
 
@@ -18,16 +17,28 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   createForm() {
-    return new FormGroup({
-      nome: new FormControl(),
-      preco: new FormControl(),
-      imagem: new FormControl(),
-      ativo: new FormControl()
+    return this.formBuilder.group({
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5)]],
+      preco: [0, [Validators.min(0)]],
+      imagem: ['', [Validators.required, Validators.maxLength(255)]],
+      ativo: true
     });
+    // return new FormGroup({
+    //   nome: new FormControl(),
+    //   preco: new FormControl(),
+    //   imagem: new FormControl(),
+    //   ativo: new FormControl(true)
+    // });
   }
 
-  onSubmit(){
-    console.log(this.form);
+  onSubmit() {
+    if (this.form.dirty && this.form.valid) {
+      alert('Save');
+      console.log(this.form);
+    } else {
+      console.log(this.form);
+      alert('Ops');
+    }
   }
 
 }

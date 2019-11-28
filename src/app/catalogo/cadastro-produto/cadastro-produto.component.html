@@ -6,14 +6,17 @@
         <div class="form-group">
             <label for="nome">Nome</label>
             <input formControlName="nome" type="text" class="form-control" id="nome" placeholder="Nome">
+            <control-messages [control]="form.get('nome')"></control-messages>
         </div>
         <div class="form-group">
             <label for="preco">Preço</label>
             <input formControlName="preco" type="number" class="form-control" id="preco" placeholder="Preço">
+            <control-messages [control]="form.get('preco')"></control-messages>
         </div>
         <div class="form-group">
             <label for="imagem">Imagem</label>
             <input formControlName="imagem" type="text" class="form-control" id="imagem" placeholder="Imagem">
+            <control-messages [control]="form.get('imagem')"></control-messages>
         </div>
         <div class="checkbox">
             <label>
