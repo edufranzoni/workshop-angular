@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CriarProdutoDto } from '../criar-produto-dto';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -9,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CadastroProdutoComponent implements OnInit {
 
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private produtoService: ProdutoService) {
     this.form = this.createForm();
   }
 
@@ -31,12 +33,22 @@ export class CadastroProdutoComponent implements OnInit {
     // });
   }
 
-  onSubmit() {
-    if (this.form.dirty && this.form.valid) {
-      console.log(this.form);
-    } else {     
+  async onSubmit() {
+    const isValid = this.form.dirty && this.form.valid;
+    
+    if (!isValid) {
       //TODO: avisar que tem falha.
       alert('Ops, alguns dados não foram informados');
+      return;
     }
+
+    const controls = this.form.controls;
+    const produto: CriarProdutoDto = {
+      nome: controls.nome.value,
+      preco: controls.preco.value,
+      imagem: controls.imagem.value,
+      ativo: controls.ativo.value,
+    }
+    await this.produtoService.cadastrarProduto(produto).toPromise();
   }
 }
