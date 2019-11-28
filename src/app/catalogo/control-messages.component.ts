@@ -28,7 +28,9 @@ export class ControlMessagesComponent {
       'invalidEmailAddress': 'Invalid email address',
       'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
       'minlength': `Tamanho mínimo: ${validatorValue.requiredLength}`,
-      'maxlength': `Tamanho máximo: ${validatorValue.requiredLength}`
+      'maxlength': `Tamanho máximo: ${validatorValue.requiredLength}`,
+      'min': `Valor mínimo: ${validatorValue.min}`,
+      'max': `Valor máximo: ${validatorValue.max}`,
     };
 
     return config[validatorName];

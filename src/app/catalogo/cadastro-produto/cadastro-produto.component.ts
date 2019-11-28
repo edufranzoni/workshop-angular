@@ -33,12 +33,10 @@ export class CadastroProdutoComponent implements OnInit {
 
   onSubmit() {
     if (this.form.dirty && this.form.valid) {
-      alert('Save');
       console.log(this.form);
-    } else {
-      console.log(this.form);
-      alert('Ops');
+    } else {     
+      //TODO: avisar que tem falha.
+      alert('Ops, alguns dados não foram informados');
     }
   }
-
 }
