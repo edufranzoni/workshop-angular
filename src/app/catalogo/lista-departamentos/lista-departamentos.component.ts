@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartamentoDto } from 'src/app/catalogo/departamento-dto';
+import { DepartamentoDto } from '../departamento-dto';
 import { DepartamentoService } from '../departamento.service';
 
 @Component({
@@ -8,22 +8,20 @@ import { DepartamentoService } from '../departamento.service';
   styleUrls: ['./lista-departamentos.component.css']
 })
 export class ListaDepartamentosComponent implements OnInit {
-
-  departamentos: Array<DepartamentoDto> = []
+  departamentos: DepartamentoDto[] = [];
   carregando: boolean = false;
 
-  constructor(private departamentService: DepartamentoService) { }
+  constructor(private departamentoService: DepartamentoService) { }
 
   async ngOnInit() {
     try {
       this.carregando = true;
-      this.departamentos = await this.departamentService.obterDepartamentos().toPromise();
-    } catch(error){
+      this.departamentos = await this.departamentoService.obter().toPromise();
+    } catch (error) {
       console.log(error);
     } finally {
       this.carregando = false;
     }
-    
   }
 
 }

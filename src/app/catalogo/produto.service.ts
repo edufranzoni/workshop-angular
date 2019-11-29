@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ProdutoDto } from './produto-dto';
-import { CriarProdutoDto } from './criar-produto-dto';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { CriarProdutoDto } from './criar-produto-dto';
+import { environment } from './../../environments/environment';
+import { EditarProdutoDto } from './editar-produto-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdutoService {
+  private url = environment.baseApiUrl + '/catalogo/produtos';
 
-  private url = 'http://localhost:5000/catalogo/produtos';
-  
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  obterProdutos() : Observable<ProdutoDto[]> {
+  obter(): Observable<ProdutoDto[]> {
     return this.httpClient.get<ProdutoDto[]>(this.url);
-  } 
-  cadastrarProduto(produto: CriarProdutoDto) : Observable<string> {
-    return this.httpClient.post<string>(this.url, produto);
+  }
+
+  criar(dto: CriarProdutoDto) : Observable<ProdutoDto> {
+    return this.httpClient.post<ProdutoDto>(this.url, dto);
+  }
+
+  atualizar(dto: EditarProdutoDto) : Observable<ProdutoDto> {
+    return this.httpClient.post<ProdutoDto>(`${this.url}/${dto.id}`, dto);
+  }
+
+  obterPorId(id: number) : Observable<ProdutoDto>{
+    return this.httpClient.get<ProdutoDto>(`${this.url}/${id}`);
   }
 }

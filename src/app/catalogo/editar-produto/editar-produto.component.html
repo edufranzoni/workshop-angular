@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">Cadastro Produto</div>
-    <form [formGroup]="form" (ngSubmit)="salvar()" class="panel-body" novalidate>
+    <div class="panel-heading">Editar Produto</div>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="salvar()" class="panel-body" novalidate>
         <div class="form-group">
             <label for="nome">Nome</label>
             <input formControlName="nome" type="text" class="form-control" id="nome" placeholder="nome">

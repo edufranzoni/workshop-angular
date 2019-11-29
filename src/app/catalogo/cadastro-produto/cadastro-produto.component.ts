@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CriarProdutoDto } from '../criar-produto-dto';
 import { ProdutoService } from '../produto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -11,44 +12,47 @@ import { ProdutoService } from '../produto.service';
 export class CadastroProdutoComponent implements OnInit {
 
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder, private produtoService: ProdutoService) {
-    this.form = this.createForm();
-  }
 
-  ngOnInit() {
+  constructor(private formBuilder: FormBuilder, private router: Router, private produtoService: ProdutoService) {
+    this.form = this.createForm();
   }
 
   createForm() {
     return this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5)]],
-      preco: [0, [Validators.min(0)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      preco: [0, Validators.min(0)],
       imagem: ['', [Validators.required, Validators.maxLength(255)]],
       ativo: true
     });
-    // return new FormGroup({
-    //   nome: new FormControl(),
-    //   preco: new FormControl(),
-    //   imagem: new FormControl(),
-    //   ativo: new FormControl(true)
-    // });
   }
 
-  async onSubmit() {
+  async salvar() {
     const isValid = this.form.dirty && this.form.valid;
-    
+
     if (!isValid) {
-      //TODO: avisar que tem falha.
-      alert('Ops, alguns dados não foram informados');
+      // TODO: Exibir motivo da falha - obter mensagens de erro do form
+      alert('Erro');
       return;
     }
 
     const controls = this.form.controls;
-    const produto: CriarProdutoDto = {
+
+    const dto: CriarProdutoDto = {
       nome: controls.nome.value,
       preco: controls.preco.value,
       imagem: controls.imagem.value,
-      ativo: controls.ativo.value,
+      ativo: controls.ativo.value
     }
-    await this.produtoService.cadastrarProduto(produto).toPromise();
+
+    try {
+      await this.produtoService.criar(dto).toPromise();
+      this.router.navigate(['/catalogo/produtos']);
+    } catch (error) {
+      alert('Falha ao criar produto');
+      console.log(error);
+    }
+  }
+
+  ngOnInit() {
   }
 }

@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   selector: 'control-messages',
   template: `<div class="text-danger" *ngIf="errorMessage !== null">{{errorMessage}}</div>`
 })
-export class ControlMessagesComponent {
+export class ControlMessages {
   @Input()
   control: FormControl;
 
@@ -27,10 +27,10 @@ export class ControlMessagesComponent {
       'invalidCreditCard': 'Is invalid credit card number',
       'invalidEmailAddress': 'Invalid email address',
       'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
-      'minlength': `Tamanho mínimo: ${validatorValue.requiredLength}`,
-      'maxlength': `Tamanho máximo: ${validatorValue.requiredLength}`,
-      'min': `Valor mínimo: ${validatorValue.min}`,
-      'max': `Valor máximo: ${validatorValue.max}`,
+      'minlength': `Minimum length ${validatorValue.requiredLength}`,
+      'maxlength': `Maximum length ${validatorValue.requiredLength}`,
+      'min': `Min value ${validatorValue.min}`,
+      'max': `Max value ${validatorValue.max}`
     };
 
     return config[validatorName];

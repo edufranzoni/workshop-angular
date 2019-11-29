@@ -9,27 +9,36 @@ import { ProdutoService } from '../produto.service';
 })
 export class ListaProdutosComponent implements OnInit {
 
-  produtos: Array<ProdutoDto> = [];
+  produtos: ProdutoDto[] = [];
   carregando: boolean = false;
 
   constructor(private produtoService: ProdutoService) { }
 
   async ngOnInit() {
-
-    // this.produtoService.obterProdutos().subscribe(produtos => {
-    //   this.produtos = produtos;
-    // }, 
-    // error => { console.error(error); 
-    // });
-    try{
+    // Usando async/await com promises
+    try {
       this.carregando = true;
-      this.produtos = await this.produtoService.obterProdutos().toPromise();
-    } catch(error){
+      this.produtos = await this.produtoService.obter().toPromise();
+    } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       this.carregando = false;
     }
-    
+
+    // Usando observables
+    //   let produtosObservable = this.produtoService.obter();
+
+    //   produtosObservable
+    //     .subscribe(produtos => {
+    //       this.produtos = produtos
+    //     }, error => {
+    //       console.error(error);
+    //     })
+
+    //   produtosObservable
+    //     .subscribe(produtos => {
+    //       console.table(produtos);
+    //     });
   }
 
 }

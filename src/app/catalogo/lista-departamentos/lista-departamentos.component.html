@@ -1,15 +1,12 @@
-<h3>Lista de Departamentos</h3>
-
 <div class="alert alert-info" [hidden]="!carregando">
     <strong>Carregando...</strong>
 </div>
-
-<table class="table table-bordered table-hover" [hidden]="carregando">
+<table class="table table-bordered" [hidden]="carregando">
     <thead>
         <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Ativo?</th>            
+            <th>Ativo</th>
         </tr>
     </thead>
     <tbody>
@@ -17,15 +14,8 @@
             <td>{{departamento.id}}</td>
             <td>{{departamento.nome}}</td>
             <td>
-                <!-- <span class="glyphicon" 
-                [ngClass]="{'glyphicon-ok text-success': departamento.ativo, 'glyphicon-remove text-danger' : !departamento.ativo}"                
-                ></span> -->
-                
-                <!-- <span class="glyphicon" 
-                [class.glyphicon-ok]="departamento.ativo"
-                [class.glyphicon-remove]="!departamento.ativo"></span> -->
-                <app-iconestatus [status]="departamento.ativo"></app-iconestatus>
-            </td>            
-        </tr>      
+                <app-icone-status [status]="departamento.ativo"></app-icone-status>
+            </td>
+        </tr>
     </tbody>
 </table>

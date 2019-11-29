@@ -1,29 +1,34 @@
-<h3>Produtos</h3>
-
 <div class="alert alert-info" [hidden]="!carregando">
     <strong>Carregando...</strong>
 </div>
+
 <hr/>
-<button class="btn btn-primary" [routerLink]="['/catalogo/produtos/novo']" >Novo</button>
+<a [routerLink]="['/catalogo/produtos/novo']" class="btn btn-primary">Novo</a>
 <hr/>
-<table class="table table-bordered table-hover" [hidden]="carregando">
+<table class="table table-bordered" [hidden]="carregando">
     <thead>
         <tr>
             <th>Id</th>
             <th>Nome</th>
             <th>Preço</th>
-            <th>Ativo?</th>
-            <th>Foto</th>
-           
+            <th>Ativo</th>
+            <th>Imagem</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let produto of produtos">
             <td>{{produto.id}}</td>
             <td>{{produto.nome}}</td>
-            <td>{{produto.preco | currency: 'BRL':'symbol'}}</td>
-            <td><app-iconestatus [status]="produto.ativo"></app-iconestatus></td>
-            <td><img class="thumbnail" [src]="produto.imagem"/></td>
-        </tr>      
+            <td>{{produto.preco | currency : 'BRL'}}</td>
+            <td>
+                <app-icone-status [status]="produto.ativo"></app-icone-status>
+            </td>
+            <td><img [src]="produto.imagem" class="thumbnail" /></td>
+            <td>
+                <a class="btn btn-primary btn-sm" 
+                    [routerLink]="['/catalogo/produtos/editar/', produto.id]">Editar</a>
+            </td>
+        </tr>
     </tbody>
 </table>

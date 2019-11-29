@@ -1,5 +1,5 @@
 export interface DepartamentoDto {
-    id: number;
-    nome: string;
-    ativo: boolean;
+    id: number,
+    nome: string,
+    ativo: boolean
 }

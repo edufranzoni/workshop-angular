@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { DepartamentoDto } from './departamento-dto';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartamentoService {
+  private url = environment.baseApiUrl + '/catalogo/departamentos';
 
-  private url = 'http://localhost:5000/catalogo/departamentos';
-  
   constructor(private httpClient: HttpClient) { }
 
-  obterDepartamentos() : Observable<DepartamentoDto[]> {
+  obter(): Observable<DepartamentoDto[]> {
     return this.httpClient.get<DepartamentoDto[]>(this.url);
   }
 }
